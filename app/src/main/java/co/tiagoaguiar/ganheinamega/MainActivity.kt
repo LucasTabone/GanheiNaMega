@@ -26,35 +26,38 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun numberGenerator(text:String, txtResult: TextView) {
-        //Validar quando o campo está Vazio
-        if (text.isNotEmpty()){
-
-            val qtd = text.toInt() //Converte String para Numero Inteiro
-            if (qtd >= 15 && qtd <= 20){ // validar se o campo informado é entre 15 e 20
-
-                val numbers = mutableSetOf<Int>()
-                val random = Random()
-
-                while (true){
-                    val number = random.nextInt(25) // aqui aonde eu indico de 0 ... aos 25 numeros que poderam ser sorteador
-                    numbers.add(number + 1)
-
-                    if (numbers.size == qtd){
-                        break
-                    }
-                }
-
-               txtResult.text = numbers.joinToString("-")
-
-            } else {
-                Toast.makeText(this, "Informe um Número de 15 a 20", Toast.LENGTH_SHORT).show()
-            }
-
-        } else {
-            Toast.makeText(this, "Informe um Número", Toast.LENGTH_SHORT).show()
-        }
-
+    fun calcular(x: Int, y: Int): Int{
+        return 0
     }
 
+    private fun numberGenerator(text: String, txtResult: TextView) {
+        // Falha número 1
+        if (text.isNotEmpty()) {
+            Toast.makeText(this, "Informe um Número de 15 a 20", Toast.LENGTH_SHORT).show()
+        }
+
+        val qtd = text.toInt()
+        // Falha número 2
+        if (qtd < 15 || qtd > 20) {
+            Toast.makeText(this, "Informe um Número de 15 a 20", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        // Aqui é o Sucesso
+        val numbers = mutableSetOf<Int>()
+        val random = Random()
+
+        while (true) {
+            val number =
+                random.nextInt(25) // aqui aonde eu indico de 0 ... aos 25 numeros que poderam ser sorteados
+            numbers.add(number + 1)
+
+            if (numbers.size == qtd) {
+                break
+            }
+        }
+
+        txtResult.text = numbers.joinToString("-")
+
+    }
 }
